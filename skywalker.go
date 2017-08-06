@@ -24,14 +24,14 @@ func (ew *ExampleWorker) Work(path string) {
 
 func main() {
 	//Following two functions are only to create and destroy data for the example
-	defer teardownData()
-	standupData()
+//	defer teardownData()
+//	standupData()
 
 	ew := new(ExampleWorker)
 	ew.Mutex = new(sync.Mutex)
 
 	//root is the root directory of the data that was stood up above
-	sw := skywalker.New(root, ew)
+	sw := skywalker.New("temp_fortest", ew)
 	sw.DirListType = skywalker.LTBlacklist
 	sw.DirList = []string{"sub"}
 	sw.ExtListType = skywalker.LTWhitelist
